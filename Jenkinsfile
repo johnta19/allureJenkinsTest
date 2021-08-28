@@ -11,7 +11,10 @@ pipeline {
                 node('master') {
                     bat 'mvn clean test'
 
-                    script {
+                }
+        stage('allure'){
+            steps{
+                script {
                         allure([
                         includeProperties: false,
                         jdk: '',
@@ -19,8 +22,11 @@ pipeline {
                         reportBuildPolicy: 'ALWAYS',
                         results: [[path: 'target/allure-results']]
                         ])
-                    }
-                }
+                        }
+            }
+        }
+
+
             }
         }
     }
