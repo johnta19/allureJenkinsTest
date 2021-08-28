@@ -1,7 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('git') {
+        stage('clean'){
+            steps{
+                bat 'mvn clean'
+            }
+        }
+        stage('test') {
             steps{
                 node('master') {
                     bat 'mvn clean test'
